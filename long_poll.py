@@ -12,8 +12,23 @@ CORS(app)
 def home():
 	if(request.method == 'GET'):
 		data = {'text' : "lalalalala"}
+		f = open('db/home.txt')
+		data = f.read()
+		end_len = len(data)
+		old_m_time = os.path.getmtime('db/home.txt')
 
-		return jsonify(data)
+		while(True):
+			new_m_time = os.path.getmtime('db/home.txt')
+			if(new_m_time > old_m_time):
+				f = open('db/home.txt')
+				data = f.read()
+				new_data = {'text':''.join(list(data)[end_len:])}
+				#new_data = {'text' : data}
+				end_len = len(data)
+				old_m_time = new_m_time
+				print(new_data)
+
+				return jsonify(new_data)
 
 
 	text = "hahahahahahaha"
