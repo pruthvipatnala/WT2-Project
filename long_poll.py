@@ -11,7 +11,6 @@ CORS(app)
 @app.route('/',methods = ["POST","GET","DELETE","PUT"])
 def home():
 	if(request.method == 'GET'):
-		data = {'text' : "lalalalala"}
 		f = open('db/home.txt')
 		data = f.read()
 		end_len = len(data)
@@ -29,10 +28,6 @@ def home():
 				print(new_data)
 
 				return jsonify(new_data)
-
-
-	text = "hahahahahahaha"
-	return render_template("sup.html",rows = [text])
 
 if __name__ == '__main__':
 	app.run(debug=False,host='0.0.0.0',port = 8000,threaded=True)
