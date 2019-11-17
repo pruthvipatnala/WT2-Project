@@ -31,7 +31,7 @@ def home():
 
 @app.route('/contact',methods = ["POST","GET","DELETE","PUT"])
 def contact():
-	contact_info = "Contact : \n +9881422115 \n pruthvipatnala@gmail.com"
+	contact_info = "<p>Contact : </p> <p>+91 9881422115 </p> <p>pruthvipatnala@gmail.com</p>"
 	if(request.method == 'GET'):
 		data = {'text': contact_info}
 		return jsonify(data)
