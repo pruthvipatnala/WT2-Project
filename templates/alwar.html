@@ -59,6 +59,9 @@ function load_experiences(){
       }
 
     }
+    else{
+      count--;
+    }
   }
   };
   xhttp.open("GET", "http://localhost:8000/experiences/alwar/"+count, true);
@@ -79,6 +82,25 @@ window.onscroll = function() {
   }
 };
 
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
 </script>
 
 
@@ -87,21 +109,14 @@ window.onscroll = function() {
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h4>John's Blog</h4>
+      <h4>Tripster Company Blog</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
+        <li class="active"><a href="home.html">Home</a></li>
         <li><a href="#section2">Friends</a></li>
         <li><a href="#section3">Family</a></li>
         <li><a href="#section3">Photos</a></li>
       </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
+      
     </div>
 
     <div class="col-sm-9">
@@ -190,11 +205,11 @@ window.onscroll = function() {
 
 
       <h4 >Post your Experience:</h4>
-      <form role="form">
+      <form role="form" action="http://localhost:8000/add_experience/alwar/family" method="post" target="_blank">
         <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <input type="submit" class="btn btn-success" value="Submit">
       </form>
       <br><br>
       

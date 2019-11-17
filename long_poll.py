@@ -53,15 +53,39 @@ def experiences(place,count):
 			exps.append(i[3])
 
 		count = int(count)
-		if(count*5 <= len(exps)):
-			exps = exps[:count*5]
-			exps = exps[-5:]
+		if(count*5 <= len(exps)+4):
+
+			exps = exps[(count-1)*5:(count-1)*5+4]
 			s = '**'.join(exps)
 			data = {'text' : s}
 			print(data)
 			return jsonify(data)
 		else:
 			return jsonify({'text':''})
+
+
+@app.route('/add_experience/<place>/<category>', methods = ["POST","GET","DELETE","PUT"])
+def add_experience(place,category):
+
+	if(request.method == 'POST'):
+		data = request.form['new_exp']
+		#data = request.get_json(force=True)
+		#print(data)
+
+		conn = sql.connect('db/experiences.db')
+		command = "SELECT COUNT(*) FROM experiences"
+		count = list(conn.execute(command))[0][0]
+		conn.commit()
+		
+		exp_id = str(count+1)
+		experience = data
+
+		command = "INSERT INTO experiences (exp_id, place, category, experience) values ('"+exp_id+"','"+place+"','"+category+"','"+experience+"')"
+		conn.execute(command)
+		conn.commit()
+
+		return jsonify({'exp_id':exp_id, 'place':place, 'category':category, 'experience':experience})
+		#return render_template(place+'.html')
 
 
 @app.route('/test',methods = ["POST","GET","DELETE","PUT"])
