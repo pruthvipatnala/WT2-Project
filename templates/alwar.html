@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>John's Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Home</a></li>
+        <li><a href="#section2">Friends</a></li>
+        <li><a href="#section3">Family</a></li>
+        <li><a href="#section3">Photos</a></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Blog..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+      <h1>ALWAR</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/alwar_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>One of the most ancient Rajasthani kingdoms, Alwar is a refreshing little town as compared to its more crowded and
+    popular counterparts like Jaipur, Jodhpur and Udaipur. In earlier times, Alwar was spelled Ulwar, which placed it
+    last in alphabetically ordered lists in British India. One of the kings of Alwar then decided to change the spelling
+    to Alwar, which then placed it on the top of the list. If you want to explore the rich culture of Rajasthan, then you
+    will be delighted to find that Alwar has soaked up a lot of the culture and heritage of the state and has a lot to
+    offer where authenticity is concerned. Alwar has a history that dates way back to the 7th century, when it was founded
+    by Raja Ajay Pal Chauhan. This quaint town is situated in the Aravalli hills and has bountiful nature and spectacular
+    views. Alwar is known not only for its natural beauty, but also for the classic and royal beauty of its monuments and
+    architecture. Alwar is speckled with great palaces, temples, hunting lodges, forts and many other historically
+    significant structures. So, if you find yourself planning a trip to Rajasthan, we recommend Alwar as a must-visit! Do
+    book one of the lovely palatial hotels in Alwar well in advance, as hotels here can fill up quite quickly. Here's a
+    detailed guide to Alwar and all its loveliness.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/alwar_3.jpeg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Rajasthani, Hindi and English <br><br>
+      
+        Best Time to Visit: November to February are generally considered as good months to visit Alwar. So you can plan a trip to
+        Alwar during the Christmas vacation and spend some much-needed quality time with your loved ones! But do remember to book one  of the fabulous hotels in Alwar well in advance before setting off on your holiday! <br><br>
+      
+        Clothing: Heavy cotton and light woollen clothes during the winter months are just right for Alwar. The monsoon months experience sporadic rain so basic rain gear is good enough. <br><br>
+      
+        Moving around: You will find plenty of autorickshaws and taxis from the train station to the city centre. Also, you can hire bicycles on a rent of about Rs.70 per day. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: March to May, Extremely hot Temperatures – 30°C to 45°C <br>
+        Monsoon: July to September, Irregular rainfall <br>
+        Winter: November to February, Pleasant and cool Temperatures – 5°C to 28°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/alwar_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Bhangarh Fort: The Bhangarh Fort figures in the list of haunted places in India, and for good reasons! The town, established
+  in 1573, was apparently cursed by a vindictive tantrik and the town underwent a famine after which its population dwindled
+  and vanished soon after. The town was left in ruins, and just one look at it is deeply unsettling. <br><br>
+
+  Sariska Wildlife Sanctuary: One of the best wildlife sanctuaries in the country, Sariska is also a tiger reserve and houses
+  several endangered species of animals and birds. Formerly, the Sariska Wildlife Sanctuary was a hunting ground for the royalty
+  of Rajasthan, but later, due to the efforts of Maharaja Jai Singh, Sariska was given the status of a sanctuary. You will find
+  some of the most wonderful species of birds and animals in this sanctuary like leopards, neelgais, chausinghas, Grey Partridges,
+  Peafowls, Tree Pie, Sand Grouse and many others. <br><br>
+
+  Vijay Mandir Mahal: Made during the time of Maharaja Jai Singh Prabhakar in 1918 next to lake Vijay Sagar, the Vijay Mandir
+  Mahal features 105 extravagant rooms and is quite a majestic sight. A luxuriant garden envelopes this palace, within which
+  you can spend some time relaxing and reflecting on the regal history of Alwar. <br><br>
+
+  Vinay Vilas Mahal: Also known as the City Palace, the Vinay Vilas Mahal is an 18th century structure that is nestled by the
+  foothills of the Aravallis. Today, though, this majestic palace seems to have lost some of its grandeur what with some areas of
+  it having been converted to government offices. Flaunting unmistakable regal Rajput architecture, this Mahal is totally worth
+  visiting. <br><br>
+
+  Moosi Maharani ki Chhatri: A chhatri is a cenotaph or memorial for someone buried/cremated elsewhere. Queen Moosi was one of
+  the mistresses of Maharaja Bhaktawar Singh, who was given the status of his wife after she committed the act of Sati when he
+  died. Tons of women, local and otherwise, visit the prettily carved Moosi Maharani ki Chhatri to pay homage to Queen Moosi. <br><br>
+
+  Bala Quila: Alwar's oldest known fort is known by the name Bala Quila, meaning, Young Fort. Located on the Aravalli hills,
+  Bala Quila has withstood the test of time for over 6 centuries and has seen such kingdoms like the Khanzadas, Mughals,
+  Pathans and lastly Maharaja Pratap Singh thrive there. Though the fort is now almost in ruins, its former glory still
+  cannot be denied. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4>Post your Experience:</h4>
+      <form role="form">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      <br><br>
+      
+      <p><span class="badge">2</span> Experiences:</p><br>
+      
+      <div class="row">
+        <div class="col-sm-2 text-center">
+          <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+        </div>
+        <div class="col-sm-10">
+          <h4>Anja </h4>
+          <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <br>
+        </div>
+        <div class="col-sm-2 text-center">
+          <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+        </div>
+        <div class="col-sm-10">
+          <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
+          <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <br>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
+
