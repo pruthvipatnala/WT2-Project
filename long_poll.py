@@ -2,6 +2,7 @@ import datetime
 import os
 from flask import Flask,render_template ,redirect, url_for , request, jsonify
 from flask_cors import CORS
+import sqlite3 as sql
 
 
 app = Flask(__name__)
@@ -37,6 +38,35 @@ def contact():
 		return jsonify(data)
 
 
+@app.route('/experiences/<place>/<count>', methods = ["POST","GET","DELETE","PUT"])
+def experiences(place,count):
+
+	if(request.method == 'GET'):
+		conn = sql.connect('db/experiences.db')
+
+		command = "SELECT * FROM experiences WHERE place='"+str(place)+"';"
+		l = list(conn.execute(command))
+		conn.commit()
+		#print(l)
+		exps = []
+		for i in l:
+			exps.append(i[3])
+
+		count = int(count)
+		if(count*5 <= len(exps)):
+			exps = exps[:count*5]
+			exps = exps[-5:]
+			s = '**'.join(exps)
+			data = {'text' : s}
+			print(data)
+			return jsonify(data)
+		else:
+			return jsonify({'text':''})
+
+
+@app.route('/test',methods = ["POST","GET","DELETE","PUT"])
+def test():
+	return jsonify({})
 
 if __name__ == '__main__':
 	app.run(debug=False,host='0.0.0.0',port = 8000,threaded=True)

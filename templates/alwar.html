@@ -34,6 +34,54 @@
     }
   </style>
 </head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/alwar/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+</script>
+
+
 <body>
 
 <div class="container-fluid">
@@ -141,7 +189,7 @@
       <hr>
 
 
-      <h4>Post your Experience:</h4>
+      <h4 >Post your Experience:</h4>
       <form role="form">
         <div class="form-group">
           <textarea class="form-control" rows="3" required></textarea>
@@ -150,33 +198,17 @@
       </form>
       <br><br>
       
-      <p><span class="badge">2</span> Experiences:</p><br>
+      <p onclick="load_experiences()">See Past Experiences</p><br>
       
-      <div class="row">
-        <div class="col-sm-2 text-center">
-          <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>Anja </h4>
-          <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-        </div>
-        <div class="col-sm-2 text-center">
-          <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
-          <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-          
-        </div>
+      <div class="row" id="exps">
+        
       </div>
     </div>
   </div>
 </div>
 
 <footer class="container-fluid">
-  <p>Footer Text</p>
+  <p>@Web Tech Project - 2019</p>
 </footer>
 
 </body>
