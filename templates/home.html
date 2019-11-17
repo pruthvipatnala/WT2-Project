@@ -8,6 +8,41 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript"> 
+
+    contact_obj = {
+      xhr: new XMLHttpRequest(), 
+  
+  monitor: function()
+  {
+    this.xhr.onreadystatechange = this.update;
+    this.xhr.open("GET", "http://localhost:8000/contact", true);
+    this.xhr.send();
+  },
+  update: function()
+  {
+    if(this.readyState == 4 && this.status == 200)
+    {
+      console.log(this.readyState+" in updateDiv");
+      if(this.responseText.indexOf("Fatal") == -1)
+      {
+        console.log(this.responseText);
+        var data = JSON.parse(this.responseText);
+
+        //newdiv = document.createElement("div");
+        //newdiv.innerHTML = this.responseText;
+        //newdiv.innerHTML = data['text'];
+        contact_desc = document.getElementById('contact_info');
+        //document.body.appendChild(newdiv);
+        contact_desc.innerHTML = data['text'];
+        this.abort();
+        contact_obj.monitor();
+      }
+    }
+  }
+
+    }
+
+
 obj =
 {
   xhr: new XMLHttpRequest(), 
@@ -93,7 +128,7 @@ obj =
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li id = "contact_li" onclick="contact_obj.monitor()"><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
@@ -120,7 +155,7 @@ obj =
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p id = "contact_info">ADS</p>
       </div>
       <div class="well">
         <p>ADS</p>
