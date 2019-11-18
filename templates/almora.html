@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Almora</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/almora/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>ALMORA</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/almora_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>You cannot confuse this with "just another hill-station". Existing since several hundred centuries, Almora retains its charm
+    rendered by its cobbled roads, carved wooden facades, spectacular scenic beauties and age-old temples. True it might, more than
+    once, seem that time stands still here, especially when there is so much to discover in its bend and turns. Almora is almost
+    always used as a stop-over point for excursions to nearby Binsar, Jageshwar and Bageshwar regions, which are frequented by
+    adventure enthusiasts. And not to forget, this land is also credited to having beent he meditating spot for Swami Vivekananda.
+    Visit Almora once at least to feel the cool and invigorating fresh air, enjoy Dusshera celebrations at the Nanda Devi Temple and
+    hear interesting tales of how every neighbourhood got its name. but most of all, visit Almora to view one of the most
+    unforgettable marvels of nature ever - that of the sun rising over the Great Himalayan Range...</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/almora_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Kumaoni, Hindi & English <br><br>
+      
+        Best Time to Visit: Almora can be visited all throughout the year. <br><br>
+      
+        Clothing: Cotton clothes and light woolens for summer and heavy woolens for winter. <br><br>
+      
+        Moving around:  Private taxis and jeeps are available at the car rental desks to take you around the city. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: March-June, Cool & pleasant Temperature: 12.0°C-28.0°C <br>
+        Monsoon: June-September, Moderate rainfall Annual rainfall - 828 mm <br>
+        Winter: December-February, Extremely cold Temperature: -2.0°C-15.0°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/almora_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Nanda Devi Temple: Believed to be over 200 years old, this temple is dedicated to the patron goddess of Chand Rajahs. The internal and external walls of the temple are carved beautifully with images of gods and goddesses and the temple is especially busy during the annual Nanda Devi Fair,held in September. <br><br>
+
+    Chitai Temple: This sacred temple is dedicated to Gollu Devta, one of the most prominent Kumaoni gods. Thousands of bells are hung
+    here, which toll whenever a goat is sacrificed before the deity. <br><br>
+
+    Kalimath: Another scenic spot to view the town, the temple of Kasar Devi draws huge crowds. This is also believed to be the spot
+    where Swami Vivekananda meditated. <br><br>
+
+    Katarmal: Dedicated to the Sun God, this temple is similar to the Konark Sun Temple is Konark. Though much is in ruins, you can
+    still view some interesting architecture and intricate carvings on the walls. <br><br>
+
+    Simtola: Catch scenic views of Almora from Simtola, located 5 kms away. The setting presents a picture-postcard look with the
+    continuous range of hills covered in pine and fir trees. Simtola is a popular picnic spot and you can also visit Hiradungi, an
+    old diamond mine and the Granite Hill. <br><br>
+
+    Khajanchi Mohalla: Literally the treasurer's area, this place is best for watching the old architecture and buildings as devised
+    by the erstwhile rulers of the region. <br><br>
+
+    Tamta Mohalla: Belonging to the coppersmiths, Tamta Mohalla is one of the most active regions, where you can watch copper being
+    worked on and molded into different shapes and articles. <br><br>
+
+    Collectorate: The erstwhile Fort of Almora, it is located on the highest point of Almora Bazaar. Climb up to it to catch
+    360-degree views of the town and neighbouring areas. <br><br>
+
+    Martola: Another picnic spot, Martola is located 10 kms from Almora and boasts of gardens and forests and ample scenic beauty. <br><br>
+
+    Phulseema & Pharkanauli: These are a set of rock paintings, believed to belong to the Bronze-Age. A curious element of these is
+    the red lines that a drawn on the rocks, which seem to make up the dancing figures. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/almora/hills" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+

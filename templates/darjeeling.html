@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Darjeeling</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/darjeeling/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>DARJEELING</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/darjeeling_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Aptly called Queen of Hill Stations, Darjeeling still resembles an old Victorian town, complete with cobbled roads, old-world
+    bungalows and endless tea estates. Who would have imagined that what appeared as an impenetrable forest and mountainside to
+    the two British agents who were sent to explore the area, would one day be the stunning Darjeeling that draws hordes of
+    tourists with its stunning views of the Kanchenjunga, oak, pine and orchids! And, as a trekker's paradise, it is
+    witness to thousands of people who enjoy its adventure challenges. This is just the place where you wouldn't mind
+    doing nothing; just soak in the cool climate and sip your morning cuppa before the golden rays of the sun! Yes, it's
+    crowded now at all seasons and frequent landslides play havoc to its connection with the rest of the country. But
+    'Dorje Ling' or Place of the Thunderbolt continues to be its alluring-best with its villages, waterfalls and the tiny
+    toy-train!</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/darjeeling_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Nepali (Gorkhali), Hindi, Bengali & English <br><br>
+      
+        Best Time to Visit: March-May and September-November. We recommend avoiding the monsoons due to the frequent landslides
+    that often cut off Darjeeling from other cities and disrupt airport and land services. <br><br>
+      
+        Clothing:  Light woolens & cotton during summers & heavy woolen during winters. Carry your best raingear if traveling during monsoons. Heavy boots and raincoat are a must. <br><br>
+      
+        Moving around: This picturesque town is best explored on foot. Bicycles, two-wheelers and taxis are also available for excursions. Private vehicles are also available for sightseeing at fixed rates and may be reserved through Tourist Bureau, Govt. of West Bengal, and Darjeeling. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: May-June, Mild & temperate Temperatures - 8.59ºC - 14.89ºC. <br>
+        Monsoon: June-September, Extremely heavy rainfalls, mist and fog Annual rainfall - 320 cms <br>
+        Winter: December-February, Freezing cold mists and fog Temperatures - 1.5ºC -6.11ºC <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/darjeeling_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Darjeeling Rangeet Valley Passenger Ropeway: Located at North Point about 3-km from the town, this is the first passenger ropeway in India. Temporarily under restoration, it connects North Point to Singla Bazaar over the Rangeet River in the valley. Open from 8 am-3:30 pm <br><br>
+
+  Ghoom Monastery: One of the renowned monasteries of Darjeeling, Ghoom is located at 8000 ft, 8 kms from Darjeeling and belongs to
+  the Yellow sect of Buddhists. It is home to the 15 ft high statue of the Maitreya Buddha. Painted in gold, the statue is said to
+  be coated with precious stones. The rooftops and facades have colorfully painted figures intended to scare away evil spirits.
+  The external walls are lined with prayer wheels, which are spun during praying and the internal walls are lit with butter lamps.
+  Also check out the several thangkas on the walls. The monastery also houses the Tibetan translations of some of the most famous
+  Sanskrit works by literary geniuses. <br><br>
+
+  Bhutia Basti Gompa: Situated 1 km out of town, this monastery is built against the spectacular backdrop of the Kanchenjunga
+  Mountains. The shrine located here, earlier stood on the Observatory Hill. It is built in Tibeto-Nepalese architecture and is a
+  storehouse of ancient Buddhist texts and artifacts, including the original volume of the Tibetan Book of the Dead. <br><br>
+
+  Tiger Hill: This is the highest point in the area and is located about 14 kms from Darjeeling. The best time to visit it is early
+  morning, when the first rays of the sun create a dramatic effect on the distant Himalayan peaks. And if you're lucky you just might
+   also catch a glimpse of Mount Everest. Carry your camera and some warm clothing, since the altitude makes it bone-jarringly cold. <br><br>
+
+  Darjeeling Toy Train: Built in the late 19th century, the Darjeeling Himalayan Railway is today a World Heritage sight, only the
+  second railway to have made it to that list. Built through a zigzag of tracks, the distance of almost 87 kms between Kurseong and
+  Ghoom takes almost the entire day. And it's worth it! En route, you pass through rhododendron slopes, rolling hills and spectacular
+  views of the Kanchenjunga, and cross villages with quaint names like Margaret's Hope, and chug past the front doors of houses that
+  have red-tiles and potted-flowers. <br><br>
+
+  Gardens: As picturesque as Darjeeling is, head out to the numerous gardens and parks. Head out to the Shrubbery, behind Raj Bhavan,
+  and the Lloyd Botanical Gardens that offers several varieties of flowers and orchids. Also you can catch a view of the Kanchenjunga
+  Range and Singalila Valley. The Bengal Natural History Museum is excellent for garnering information on the varied Himalayan fauna
+  and Bengal wildlife. <br><br>
+
+  Padmaja Naidu Zoological Park: Other than the usual animals here, this zoological park is home to the Snow Leopard Breeding Center,
+  the only place in the world where breeding of snow leopards in captivity has been successful. Led by Kiran Moktan, who dedicated
+  his life to this program, catching a glimpse of the adorable cubs gamboling with their mother, is an ultimate experience. Remember
+  to maintain silence when visiting the enclosure. While walking out, keep an eye on the trees nearby to sight the elusive red panda! <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/darjeeling/hills" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+

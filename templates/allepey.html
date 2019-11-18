@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Allepey</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/allepey/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>ALLEPEY</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/allepey_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Don't mistake this for a simple small town! Alleppey or Alappuzha might be untouched by time, but it has a surprising amount of
+    history that would make your holiday here worthwhile. It all starts with the famed Kuttanad region, better known as the Rice Bowl
+    because of the profusely cultivated rice plantations. Unique temples and churches dot the entire region, each with a tale of its
+    own. But Alleppey’s attraction, by far remains the inviting backwaters. Take a leisurely cruise along the Punnamada Lake, while
+    weaving your way through old bungalows, swaying palms and rice fields. And as serene as this may appear to you, these backwaters
+    show a contrast during the Snake Boat races. Watch skilled oarsmen man their way through the winding waters expertly! There is
+    much to do here and the more you look, the more you discover.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/allepey_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: : Malayalam & English <br><br>
+      
+        Best Time to Visit: August-September & February-March <br><br>
+      
+        Clothing: Light cottons during summer and light woollens are sufficient for winters. <br><br>
+      
+        Moving around: Travel around in the public transport system, which includes government and private run buses, taxis and
+    auto-rickshaws. Semi-luxury coaches and tourist taxis with or without a chauffeur can be hired. Tourist taxis are available
+    throughout the state. Another great way to explore Alleppey is by private boats that can be rented for short or long trips.
+    They are located across the North Canal, opposite the boat jetty. Regular government boats as well as luxury boats can be
+    got from the tourism department as well as private operators. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: March-late June, Hot & humid Temperature: 27.9°C-35.2°C <br>
+        Monsoon: June-September, Moderate rainfall Annual rainfall - 230 cm <br>
+        Winter: October-March, Cool & pleasant Temperature: 21.3°C-28.4°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/allepey_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Krishnapuram Palace: This 18th century palace is a typical double-storeyed Kerala building showcasing gabled roofs, dormer windows and narrow corridors. There is a museum inside, which displays ancient sculptures, bronzes and paintings. The main attraction here is the Gajendra Moksham mural, measuring some 14 feet by 11 feet (making it the largest in the region)! <br><br>
+
+  Alleppey Beach: This is one of the most popular picnic spots here complete with entertainment facilities for children and
+  families. The pier extending into the sea is believed to be 137 years old. The northern side has a sea-view park with boating
+  facilities and an old lighthouse is another attraction the beach has to offer. <br><br>
+
+  Backwater Cruise: This constitutes a must-do in Alleppey. Don't miss out on a backwater cruise through the vast network of the
+  Punnamada Lake, which takes you through the scenic views of paddy fields, Chinese fishing nets and old-world bungalows. There
+  are houseboats fitted with all amenities that even let you stay here for a night or two. This lake is the site for the famous
+  Snake Boat Race held in August. <br><br>
+
+
+  Ambalappuzha Sree Krishna Temple: Located 14 km south of Alleppey, this temple is built in typical Kerala style. Its highlight
+  is the daily palpayasam offered to the Lord. Paintings of Dasavatharam or ten incarnations of Vishnu adorn the walls. <br><br>
+
+  Pathiramanal Island: A popular haunt of several migratory birds, this Island literally means Sand of Midnight. Accessible only
+  by boat, the journey is truly scenic as the Vembanad Lake, stretching from Alleppey to Kochi and the Kayamkulam Lake, surrounds
+  it. The island is just the place to head out for a relaxing time and enjoy a backwater cruise. <br><br>
+
+  Chettikulangara Bhagavathy Temple: This is one of the most sacred temples, known for its miraculous and wish-granting powers.
+  The annual Kettukazhcha festival is attended by a large number of devotees, who take part in processions, where bright effigies
+  of horses and bullocks are taken around. <br><br>
+
+  Arthunkal: This is home to the St. Sebastian Church, which is an important Christian pilgrimage centre and the site of the annual
+  Arthunkal Perunnal Festival. <br><br>
+
+  Mannarasala Sree Nagaraja Temple: A renowned temple, it is dedicated to the Serpent God Nagaraja. This is one of the only temples,
+  where all religious rites are performed by a Brahmin priestess. It is also believed that 30,000 images of snake-gods line the
+  entire path to the temple. <br><br>
+
+  St. Mary's Church: Said to be one of the oldest churches in Kerala, it is believed to be one of the seven churches established by
+  St. Thomas. The annual feast of the church falls on the 3rd Sunday of October every year and the feast of St Thomas is celebrated
+  on March 19th. <br><br>
+
+  Punnamada Kayal: Another most visited site in Alleppey, the annual Nehru Boat Festival is held here during August/September. Thousands
+  of spectators from across the country come to the backwaters to watch this spectacular event. The boats show includes a fascinating
+  display of huge snake-boats manned by over 100 rowers and competing against each other. <br><br>
+
+  Kuttanad: Literally meaning the rice bowl of Kerala because of the profusion of green paddy fields, the scenic countryside of Kuttanad,
+  with its shimmering waterways also has a rich crop of bananas, cassava and yams. Inland waterways, which flow above land level are an
+  amazing feature of the unique landscape where farming is done below sea level. <br><br>
+
+  Karumadikuttan: Associated with legends of Buddhism, Karumadikuttan is home to an ancient black granite statue of Lord Buddha in
+  a seated position. Believed to belong to the 11th century, this statue is located on the banks of the Punnamada Lake. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/allepey/leisure" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+

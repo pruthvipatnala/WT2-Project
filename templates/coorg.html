@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Coorg</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/coorg/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>COORG</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/coorg_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Picture this - layer and layer of undulating landscape, covered in thin mist. Towering bamboo and rosewood trees.
+    Gushing waterfalls, meandering streams. Rows of fragrant coffee bushes, cardamom, nutmeg, orange and lemon grass
+    plantations. Animals like elephants, tigers and the Malabar Squirrel scurry past. Welcome to Coorg. You could plan
+    it like a romantic getaway or a leisurely holiday. It could even be a home for the adventurous at heart, given the
+    number of scenic treks here - try the Mojo Rainforest Trek through 25-acres of organic farms, the Talacauvery-Brahmagiri
+    Peak, Kakkabe to Malma and Thadiyendamol, and the Honey Valley. It has none of the usual touristy crowd and all other ingredients
+    of a wholesome holiday. Definitely a sojourn for the soul…</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/coorg_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Kodava Tak - a mix of Kannada, Tamil and Malayalam, English <br><br>
+      
+        Best Time to Visit: November - April <br><br>
+      
+        Clothing: Cotton for summers and medium woolens for winters <br><br>
+      
+        Moving around: Travelling in Coorg is best on a jeep, which can be hired within the town. If you are the strong-hearted type, you can also try and discover the treasures here on foot. You'd find most locals walking or cycling around the region, which is a good option considering you know your way around. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: March - May, Warm though pleasant Temperatures - 25°C-30°C <br>
+        Monsoon: July - September, Moderate rainfall turns the landscape green Annual rainfall <br>
+        Winter: October - mid-March, Cool and pleasant Temperatures - 15°C-20°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/coorg_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Madikeri Fort: Originally a mud fort, it was converted to stone in the 18th century and is located in the centre of Madikeri.
+  The fort houses a simple palace of the Lingayat rulers, a temple, a chapel, a small museum and a prison. The fort also
+  offers great views of the region. <br><br>
+
+  River Cauvery: This is the lifeline of the region, though you can see the river in occasional spurts here and there. It starts
+  from Talacauveri, goes to Brahmagiri and disappears; reappearing at Bhagamandala and finally meeting the Kannike and Sujyoti.
+  This criss-cross of rivulets and streams that this river forms is what renders Coorg life. This river is best seen near the
+  Dubare Reserve Forest, where you can see find the occasional glint of a mahseer, gamboling elephants and the blue kingfisher. <br><br>
+
+  Talacauvery: The birthplace of River Cauvery, it is located on the Brahmagiri Hills. From Talacauvery, steps lead to the
+  Brahmagiri Peak, where 7 great sages are said to have performed a holy yajna. The peak houses two temples - one dedicated
+  to Shiva and one to Ganesha. The water tank before the shrines is where devotees are required to have a dip before entering
+  the temples. <br><br>
+
+  Abbey Falls: This is a stunning waterfall located inside a privately-owned coffee estate, whose roaring sound can be heard from
+  the main road! The fragrance of coffee and cardamom would lift your spirits as you walk through the trail to reach the breathtaking
+  falls. Do carry along a pair of binoculars and a camera to capture its beauty. <br><br>
+
+Omkareshwara Temple: Built in 1820 by a King Lingaraja, the temple is noted for its mosque-like structure, with a dome in the center
+and four minarets supporting it surrounded by sacred bulls. Atop the dome are a gold-covered ball and a weathercock. Also located
+before the temple is a water tank where you can take a dip. <br><br>
+
+Dubare Elephant Training Camp: This elephant training camp is located between the south bank of River Cauvery and the Dubare
+Forest Reserve and is one of the best places to watch elephants engaged in a host of activities. Currently home to about 15
+elephants, you'd get practically all information about these animals. The entry fee includes tea and snacks, a naturalist's
+services and an elephant ride. This program lasts about 2-3 hours and starts with you giving a scrub to these tuskers.
+Thereafter, you would be required to feed it jaggery and ragi and enjoy a 30-minute ride to the jungle. <br><br>
+
+Fishing & Angling: The Cauvery is known as an angler's paradise and the huge mahseer is found quite abundantly at the Valnoor
+area of the river. Get a permit from the Coorg Wildlife Society before you venture here and carry your own fishing rods. You
+also need to fill out a form, wherein you enter details of your catch, bait used and where the fish was found. Remember that
+angling here is strictly catch-and-throw, so you must release the mahseer back in the water once you have the photograph taken
+with it. Some varieties can be kept for consumption, so check beforehand. <br><br>
+
+White-water Rafting: Try and catch a session of white-water rafting at the Cauvery Nisargadhama in season. The rafting session
+starts in the morning and you can spend 3 hours rafting down the river. You must be medically fit to participate in this. <br><br>
+
+Kakkabe: It was once the largest producer of honey in South-East Asia. Today it is known for its scenic treks through orchids,
+plants and spectacular views of the mountains. The highlight of this region is the Thadiyendamol, which, at 5730 ft, is the
+highest peak in Coorg. The trek is mostly gentle, except the last bit of the climb. On a clear day, stunning views of the
+coastline is visible. The Igguthappa Temple is another must-visit here, dedicated to Lord Igguthappa who is the rain god
+and giver of grains. The Kaliyarchi Festival is particularly important, when the idol is carried to the Mallama Betta peak
+and brought back to the temple post several ceremonies. The erstwhile royal hunting lodge and summer home of the Kodagu kings,
+the Nalnad Palace is a two-storey structure has carved wooden wall paintings and murals. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/coorg/hills" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+
+

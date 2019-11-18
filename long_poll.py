@@ -55,7 +55,7 @@ def experiences(place,count):
 		count = int(count)
 		if(count*5 <= len(exps)+4):
 
-			exps = exps[(count-1)*5:(count-1)*5+4]
+			exps = exps[(count-1)*5:(count-1)*5+5]
 			s = '**'.join(exps)
 			data = {'text' : s}
 			print(data)

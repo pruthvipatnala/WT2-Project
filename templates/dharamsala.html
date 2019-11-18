@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dharamsala</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/dharamsala/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>DHARAMSALA</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/dharamsala_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>This was the chance discovery of the British some 150 years ago. A tiny settlement of a few houses perched on the mountain
+  ridge providing a panoramic view of the snowcapped Dhauladhar. Today an active Tibetan hamlet, it welcomes travelers to its
+  fold, amidst praying monks, ringing prayer bells, towering pine and deodar trees. It is split into Lower and Upper Dharamsala,
+  both a curious mish-mash of spirituality, pizzerias, hippies and monasteries. And amidst these pine-covered hills, is the home
+  of Dalai Lama, exuberating the complete serenity. The ultimate in a pleasure holiday beckons you.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/dharamsala_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Pahari, Hindi & English <br><br>
+      
+        Best Time to Visit: April - October <br><br>
+      
+        Clothing: Cottton and tropical wear in summer & Heavy woollen in winter. An umbrella is a must during Dharamsala's monsoon <br><br>
+      
+        Moving around: Dharamsala is divided into two distinctive areas – Lower & Upper Dharamsala. Lower Dharamsala, at 1250 mts
+    is the main town. Upper Dharamsala, better known as Mc LeodGanj is 10 kms from main Dharamsala. You can cover the entire
+    area on foot, or hire a taxi to go around the place. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: April-July, Pleasant and cool weather Temperatures – 22°C-30°C <br>
+        Monsoon: April-July, Pleasant and cool weather Temperatures – 22°C-30°C <br>
+        Winter: November-February, Extremely cold, snowfall is common Temperatures – 20°C-0°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/dharamsala_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Norbulingka: Literally the Jewelled Park, this drew inspiration from the Dalai Lama’s summer palace and is a fine example of
+    Tibetan craftsmanship. It is an institute that was established to preserve and teach ancient Tibetan arts. Among the teachings
+    are thangka making, statue making, carpentry, traditional Tibetan image sculpting, woodcarving and metal crafting. The thangkas
+    are bright illustrations of traditional Tibetan gods created as per details laid down in the ancient manuscripts. You can also
+    place orders for these in the painting department. <br><br>
+
+    Tsuglakhang: This is the main temple complex in Dharamsala, built without cutting a single tree! In fact it is based on trunks
+    of growing deodars, held in place by adjustable iron rings. The main deity inside is a 9 ft high gilded Buddha on a lotus seat.
+    Also located within are 12 ft high gold images of the Padmasambhava and Avalokiteshwara. In fact, it is believed that some
+    elements of the temple were brought from the originalTsuglakhang in Tibet. The temple also provides beautiful views of the
+    neighbouring Dhauladar peaks. Evening is the best time to visit it when prayers and other rituals are conducted by the Dalai
+    Lama. The courtyard is the centre of activities as the monks make preparations for the Kalachakra ceremony. The café here is
+    also the best place to try out some Tibetan herbal tea and South Indian coffee. <br><br>
+
+    Namgyalma Stupa: This Buddhist stupa is surrounded by prayer wheels, located centrally in McLeod Ganj. It is dedicated to the
+    Tibetans who lost their lives fighting for their homeland. There is a shrine with an idol of the Sakyamani Buddha and reflecting
+    a typical indo-Tibetan style of architecture. This stupa is a hub of activity through the day as you watch devotees turning turn
+    the prayer wheels and chant mantras. <br><br>
+
+    Tibetan Institute of Performing Arts: This institute was established as early as 1959 by His Holiness the Dalai Lama, as an attempt
+    to preserve Tibet’s unique performing arts. The institute houses over 112 members proficient in various arts, singing, playing
+    instruments and dances. Along with these, there is a handicrafts section, with produces in-house costumes and props needed for
+    the performances. A special highlight of the TIPA is the Traditional Tibetan Opera, which hosts the annual 9-day Shoton Opera
+    Festival marked by Lhamo performances. Performers, dance and perform to the tune of cymbals and drums, and sport vibrant Tibetan
+    masks. Another annual festival is the 3-day Yarkyi Festival, which is held in August to commemorate the establishment of TIPA.
+    Along with cultural performances, it is marked by sporting competitions like soccer, basketball, badminton and volleyball. To
+    make its presence felt across the world, TIPA also organizes several tours, showcasing Tibetan culture to audience across the
+    world. <br><br>
+
+    Losel Doll Museum: Located inside the Norbunlingka Institute, this doll museum houses more than 160 different dolls. It is probably
+    the best place where you can get a glimpse of the original Tibetan costumes, most of which don’t exist in reality anymore. <br><br>
+
+    Dal Lake: Located 2 kms from McLeod Ganj, this is a small lake set amidst forests and hills. It is a scenic picnic spot and you
+    can even feed the goldfish that abound here. The locals consider this lake extremely sacred and it is believed that a dip here
+    fulfills wishes. <br><br>
+
+    Bhagsunag: Located barely a km from McLeod Ganj, Bhagsunag is home to an ancient temple and a beautiful waterfall. This is another
+    scenic spot you can walk around in. <br><br>
+
+    Chinmaya Tapovan: This ashram is located almost 10 kms from Dharamsala and houses a 9 m high idol of Lord Hanuman, a temple
+    edicated to Lord Rama, a meditation hall and a health and recreation centre. <br><br>
+
+    Jwalamukhi Temple: Located close to Dharamsala, this temple derives its name from the eternally burning flame from rock in the
+    sanctum. This flame is said to be the manifestation of Goddess Sati and offerings of rabri, misri, milk and fruits. Near the
+    flame, two pools of clear water flow, fed by the underground springs. Though the water seems to be boiling, it is actually
+    refreshingly cool! This temple is the site of the vibrant Navratri Festival held in honour of the goddess. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/dharamsala/hills" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+

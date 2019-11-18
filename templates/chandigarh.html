@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chandigarh</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/chandigarh/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>CHANDIGARH</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/chandigarh_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Undoubtedly one of the most well-planned cities, Chandigarh exudes a charm that is almost unknown… A fast-paced modern city,
+  it even has an old-world charm living alongside. Beautifully designed and even better maintained, its multi-purpose gardens
+  and lakes are a must-see here. Add to this the fact that some of the best cuisines can be found here. Take a tour through
+  the modern roads where huge brands co-exist with everyday hawkers. Rightly considered the Mecca of Modern Architecture &
+  Planning, there definitely are few cities that showcase the traditional and modern as perfectly.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/chandigarh_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages:  Punjabi, Hindi & English <br><br>
+      
+        Best Time to Visit: August-November, when the weather is pleasant <br><br>
+      
+        Clothing: Light cottons during summers & heavy woollens during winters <br><br>
+      
+        Moving around: Commuting within the city is easy and convenient, thanks to its well planned roads and transport system.
+    The city has an excellent bus service run by Chandigarh Transport Undertaking (CTU) which is a good mode of travel. For
+    travelling short distances, rickshaws are just apt. You could also hire a private vehicle for excursions and sightseeing,
+    whose charges are negotiable. An especially interesting mode of transport would be the Hop On Hop Off Tourist Coach, which
+    is a double decker bus moving through all major tourist spots in the city. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: April-July, Hot & humid Temperature: 37°C-44°C <br>
+        Monsoon: July - September, Moderate rainfall Annual rainfall - 104.8 cm <br>
+        Winter: November - January, Cold & chilly Temperature: 4°C-14.3°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/chandigarh_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Government Museum & Art Gallery: Located in Sector 10, the museum houses a fine collection of stone sculptures of the Gandhara
+  period and various other artifacts. Apart from the sculptures, there are hundreds of miniature paintings not only from Punjab
+  but some reflecting Persian, Mughal and Rajasthani work. A small collection of objects in stucco, terra cotta metal, ivory,
+  lacquer, ceramic and enamel are on display. The museum is also the place to check out prehistoric fossils and artifacts along
+  with modern art. <br><br>
+
+
+Museum of the Evolution of Life: The Museum of the Evolution of Life located in Sector 10 will take you on a trip 5,000 years
+back. From the Indus Valley Civilization to present day, the museum has on display a vast variety of evolutionary items and
+facts. <br><br>
+
+International Dolls Museum: Located in Sector-23 the International Dolls Museum has an interesting collection of dolls and puppets
+from all over the world covering the variant art of more than 25 countries. <br><br>
+
+The Secretariat and the Vidhan Sabha: This is a modern building that handles the general administration of the city. As you enter
+the complex, you would come across a huge Open Hand sculpture which stands as the logo for the city, a symbol of unity <br><br>
+
+Chandigarh Golf Course & Driving Range: Adjacent to the lake, is the popular Golf Club. The Chandigarh Golf Club boasts of a
+serene atmosphere, lush green fairways and a beautiful club house with both indoor and outdoor seating. Located near the golf
+course is the Driving Range below the steps of the Sukhna Lake. This newly built Driving Range is beautifully laid out and driving
+around is worth the experience. <br><br>
+
+Panchkula: This is a tiny town located almost 10 kms from Chandigarh. Visit the temple of Goddess Chandi, from where Chandigarh
+is said to have derived its name. Nearby is the temple of Mansa Devi. The temples are built in the North Indian style of
+architecture and are truly impressive. In Panchkula you can come across the Panchkula Cactus and the Botanical Garden, which
+houses over 2,500 varieties of cacti and other succulent plants from all over the world. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/chandigarh/leisure" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+

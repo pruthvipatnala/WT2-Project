@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kochi</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/kochi/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>KOCHI</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/kochi_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>It's not for nothing that Kochi, aka Cochin, is called Queen of the Arabian Sea. The Chinese fishing nets floating lazily
+      above the surface of the sea make for a picture-perfect setting and the Western Ghats in the east make for an imposing
+      sentry. Lovingly referred to as the Gateway to Kerala, which is in turn lovingly referred to as God's Own Country, Cochin
+      is another paradise in the state that reminds one of times gone by and offers visitors a laid-back ambience. While there
+      is a lot to be seen and done in Cochin, the very best things you could probably do here are relax and take in the opulent
+      culture of the city and binge on the amazing South Indian food. Cochin reflects the influences of several kingdoms that
+      have played a major role in the creation of modern-day Kochi, namely Portuguese, Chinese, Dutch, Arab and British. The
+      architecture and culture speak volumes of all these dynasties which make Cochin a must-visit destination for art and
+      history lovers. Not to mention, Cochin has also been named as one of the top 3 tourist destinations by the World Travel
+      and Tourism Council. If you are planning a trip to this city any time soon, make sure you book one of the lovely hotels
+      in Cochin well in advance. Following is a quick guide to the countless sights and sounds of this grand old city that a
+      visitor must explore, and a few facts to make your trip hassle-free.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/kochi_3.png" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: : Malayalam & English <br><br>
+      
+        Best Time to Visit: October to February during the winter season when the weather is nippy but pleasant; start of March
+    is a good time to visit too, when it starts to get warm but isn't terribly hot. <br><br>
+      
+        Clothing: If you are visiting during summer, carry only light cotton clothes if you want a pleasant holiday. During winter,
+    carry along a few woollen clothes or light jackets as the temperature can drop a little. <br><br>
+      
+        Moving around: Moving within Cochin is inexpensive and easy. There are privately owned as well as state-run bus services in
+    the city. Rickshaws and taxis are available frequently on hire throughout the city. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: March to June, Warm and humid Temperatures – Can go up to 38°C <br>
+        Monsoon: July to September, Heavy rainfall <br>
+        Winter: October to February, Cool and pleasant Temperatures – 16°C to 33°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/kochi_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Mattancherry Palace: Also known as the Dutch Palace, Mattancherry Palace is reminiscent of the erstwhile Portuguese style
+  of architecture. Constructed in the year 1557, this palace was presented to the then king of Kerala, Veera Kerala Varma.
+  After renovations by the later kings of Kerala, the Mattancherry Palace has taken on a distinctive Indian architectural style. <br><br>
+
+  Fort Kochi: If you are fascinated by the history of Cochin, then one place you must definitely visit is Fort Kochi. This small
+  town was given to the king of Kochi as a mark of gratitude by the Portuguese in the year 1503 and bears a Portuguese, British
+  and Dutch resemblance where architecture is concerned. Some important places you must visit in Fort Kochi are Thakur House,
+  David Hall, Fort Emmanuel, St. Francis Church, etc. <br><br>
+
+  Jew Town: Jew Town was an area granted to the Jews when they took refuge in 1524. You must visit this part of the city just for
+  the old-world charm of it, and of course, a number of souvenirs that you can take back home. Check out the antique and curio shops
+  selling jewellery, wooden furniture, lamps, vintage photographs and tons of other vintage paraphernalia. <br><br>
+
+  Marine Drive: Just like Mumbai, Kochi too has a charming promenade. Marine Drive is visited by tons of people everyday, which
+  stretches from Jankar Jetty to Ernakulam Boat Jetty. There are also quite a few tourist attractions here that you can check out,
+  like China Net Bridge, Rainbow Bridge, etc. <br><br>
+
+  Cherai beach: One of the loveliest beaches in India, Cherai beach is located near Vypeen Island. Fondly referred to as the
+  "Princess of the Arabian Sea", Cherai beach is a lone stretch of clean and shallow water that is ideal for swimming and photo-ops.
+  Plus, the backdrop of lovely backwaters and Chinese fishing nets make the whole area absolutely picturesque. <br><br>
+
+  Willingdon Island: This island connects Kochi with seaports around the world. Named after Lord Willingdon, Willingdon Island was
+  developed in the year 1936. This is quite a major trade centre for Cochin and it is also home to the Port of Cochin and the
+  customs offices. Also, you will find some wonderful Cochin hotels around this area, so make sure to check those out for your
+  holiday! <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/kochi/leisure" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+

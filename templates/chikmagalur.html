@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chikmagalur</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/chikmagalur/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>CHIKMAGALUR</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/chikmagalur_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Located amidst the beautiful Baba Budan Hills, Chikmagalur never fails to surprise you. It is made of undulating hills, deep
+    valleys, silver-waterfalls and beautiful coffee blossoms. Its natural treasures and easy accessibility make it one of the
+    most-loved weekend getaways from Bangalore. True, it doesn't have too many hotels and restaurants, but it does have some of
+    the best picnic spots, friendly locals, scenic treks and ancient temples. Visit the Raj Bhavan for its unique sunset scenes,
+    the numerous coffee estates producing the world's best coffee and the Rose Garden for its undiscovered varieties of roses.
+    This is a landscaped designed entirely by nature, so discover this artwork before the crowd does!</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/chikmagalur_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Kannada & English <br><br>
+      
+        Best Time to Visit: September-April <br><br>
+      
+        Clothing: Pack your cotton clothing for summers and warm woolens for winters. If you're looking for some trekking adventures,
+  remember to put in your trekking gears. <br><br>
+      
+        Moving around: Explore this scenic town in cycle rickshaws and tongas (horse drawn carriages). Alternatively, there are city bus
+  services that ply within Chikmagalur and are a good means of travel. Tourist cabs are the best choice in case you want to tour
+  the city all day or visit nearby places like Kemmannagundi. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: March-late June, Warm & pleasant Temperatures: 24.3°C-35.6°C <br>
+        Monsoon: June-September, Moderate to heavy rainfall turning the landscape lush green <br>
+        Winter: October-March, Cool days and chilly nights Temperatures: 9.2°C-26.8°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/chikmagalur_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Sringeri: This highly-revered spot was established by Adi Shankaracharya and is home to two of the most popular temples. The Sharadamba Temple is dedicated to Goddess Saraswati, the goddess of learning and wisdom. Earlier constructed in wood, the temple was ravaged by fire, and thereafter constructed in Dravidian style. The Vidyashankara Temple was built by the founders of Vijanagara Empire and combines Hoysala and Vijayanagara style of architecture. The alcoves of the temple are carved with Jain, Buddhist and Hindu mythological characters. The main sanctum has 12 pillars dedicated to the 12 zodiac signs. Highlight of this hall is the fact that the sun falls on the respective pillars according to the months. Another place worth visiting here is the Sri Sringeri Sharada Peetham, which was established by Sri Adi Shankaracharya as a centre of learning and spiritualism. <br><br>
+
+  Amruthapura: Located north of Chikmagalur town, Amruthapura is known for the beautiful Amrutheshwara Temple, built in Hoysala style. The temple is flanked by coconut trees and showcases circular carvings in the outer walls. The temple has a single vimana (spire) and a large open mandapa. The main sanctum is square and is richly adorned with carvings of demons. The temple’s most enduring feature are the rows of pillars that support the ceiling in the inner sanctum. Also watch the floral designs on the ceilings and the panels depicting carvings from Hindu epics including those from Ramayana and Mahabharata. <br><br>
+
+  Horanadu: Located almost 100 kms from Chikmagalur, Horanadu is located amidst picturesque forests and valleys. This tiny temple town is known for the Annapoorneshwari Temple, which has an idol of the beautiful goddess made in gold. An interesting feature of this temple is the practice of providing a three course meal to everyone who visits it. This temple symbolizes the faith that anyone visiting it would never have shortage of food. Note that all men visiting the temple are required to remove their shirts and cover their shoulders with a towel or shawl. <br><br>
+
+  Baba Budan Range: En route from Chikmagalur before you reach Kemmannagundi, Baba Budangiri Peak is one of the highest in Karnataka. It is considered holy by both Muslims and Hindus and is believed that coffee was introduced to India by the Muslim saint, Baba Budan who in the 16th century smuggled in seven coffee beans in his belt from West Asia and planted them here. This is also one of the most frequented trekking spots. The highest spot in this hill is Mullaiyangiri, which houses 3 caves sanctified by 3 sages and containing their tombs. The top of the peak also houses a temple and provides views of the Arabian Sea on clear days. It is not possible to drive to the top of the hill, though you can attempt to trek the distance. <br><br>
+
+  Kemmanagundi: This is one of the most scenic spots on the Baba Budan Range, located almost 58 kms from Chikmagalur. This scenic hill station is best explored by trekking and spectacular sunsets and well-maintained gardens are a must-watch here. Among the several attractions here, Raj Bhavan is a guest house offering spectacular views of the surrounding areas, especially the sunset. The Z Point is accessible by a 30 minute trek and is another vantage point to catch spectacular views of the neighbouring areas. The Rose Garden is a paradise for horticulturists and is the site of a large variety of roses cultivated and maintained by the Horticultural Department. The Hebbe Falls are located away from the Raj Bhavan and are particularly impressive for the streams that cascade down 168 meters in two stages – Dodda Hebbe and Chikka Hebbe. The Kallathi Falls are also beautiful, with the water gushing down 122 meters. There is also an old Veerabhadra Temple dedicated to Lord Shiva, constructed in a gap between rocks which can be approached after crossing the waterfall. <br><br>
+
+  Kudremukha: Located almost 95 kms from Chikmagalur, this range derives its name from its horse-face shape. The entire range is a series of continuous hills connected to each other by valleys and precipices. Kudremukh is truly a trekker’s paradise and leaves much to be discovered with its numerous caves and excellent trekking routes. Don’t miss the sunrise from the lush green slopes! The hills are also the site of the Kudremukh National Park, which houses animals like tigers, leopards, wild dogs, gaurs, wild pig and lion-tailed macaque. However, remember that owing to the dense forest growth, sightings of animals require considerable patience! Also located nearby are the Hanumana Gundi Waterfalls, which at a height of 100 ft is definitely a pretty picture. Another famous and visited waterfall is the Manikyadhara Falls, which is sacred to both Hindus and Muslims. <br><br>
+
+  Bhadra Wildlife Sanctuary: Located 38 km north-west of Chikmagalur town, Bhadra Wildlife Sanctuary is almost entirely surrounded by hills and has the tributaries of the Bhadra River flowing through it. The uniqueness of the sanctuary stems from the huge variety of butterflies. The sanctuary is also a great place to spot the Indian bison, elephants, tiger, spotted deer, birds and reptiles such as cobra and python. More than 250 species of bird life, many of which are unique to the Western Ghats, are also spotted here. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/chikmagalur/leisure" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+
