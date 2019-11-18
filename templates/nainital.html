@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nainital</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/nainital/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>NAINITAL</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/nainital_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Within the panoramic Kumaon region, lies the district of Nainital, a hill resort blessed with beauteous splendor. A favourite with the British, Nainital was, for a long time, home to Jim Corbett, and you would find mention of it in his books. Long ago, it probably housed just a handful of people. Today it is tourist-laden, that throng its Mall area, looking for activities or   simply to hang-out! And amidst all this glimmers the blue-green Naini Lake, reflecting in it silhouettes of mountains and trees.   Visit it whenever you want, but we recommend you give the tourist season a miss and visit it during the off-season. Because it is then that Nainital assumes its real splendor that made the British title it â€œhomeâ€ . And why not - its outskirts offer wondrous avenues for adventure enthusiasts, anglers and honeymooners. Trot on a pony, paddle out to the lake and bag yourself some of the most exotic candles you'd ever see. Let the peace of this resort envelop you!</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/nainital_2.jpeg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Kumaoni, Hindi, English <br><br>
+      
+        Best Time to Visit: April - June, September - March <br><br>
+      
+        Clothing: Light woolens & cotton during summers & heavy woolen during winters. Carry your best raingear if traveling during monsoons. Heavy boots and raincoat are a must. <br><br>
+      
+        Moving around: For local transport, make use of cycle rickshaws and private taxis. Of course, the most comfortable way to travel would be on foot, since that lets you explore this scenic town to the fullest. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer:April - March-June, Cool & pleasant Temperatures - 22.8°C - 28.3°C <br>
+        Monsoon:July - Mid-June-mid-September , Heavy showers daily & damp weather Annual rainfall - 1294.5 mm <br>
+        Winter:October - December-February, Freezing cold, mists and fog Temperature - 7.0°C to - 20.2°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/nainital_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Naina Devi Temple: Located at the north of the lake, this temple is dedicated to Naina Devi, a manifestation of Goddess
+  Durga. It is believed that this is the spot where Goddess Sati's left eye fell, when Vishnu chopped her body to stop Shiva's
+  cosmic dance of destruction. Also located close to the temple is the Naina Devi cave. <br><br>
+
+  Naina Peak: 5 kms from the lake, the Naina Peak is the highest peak surrounding the lake. It is a popular picnic spot and
+  affords marvellous views of the Himalayas, the Nanda Devi Peak and the mountains of the Tibetan border. <br><br>
+
+  Other Lakes: Other than the Naini Lake, Nainital is also home to seven other picturesque lakes. Among these, Bhimtal is one of
+  the most beautiful and popular. It has wonderful boating facilities and the island in the midst of it has a floating restaurant
+  accessible only by boat! Saat Tal is an amalgamation of seven interconnected lakes and is set amidst dense oak and pine trees,
+  home to migratory birds. Naukuchiatal or literally the nine-cornered lake is a good option for boating and fishing. A popular
+  belief goes that if you visit all nine corners at one go, you are sure to attain Nirvana! Khurpatal, Harishtal, Lokhantal and
+  Malwatal are also scenic spots known for very good angling options. <br><br>
+
+  Boat House Club: Dating to the 19th century, visit the Boat House Club, which has a bar and billiards room facing the lake.
+  Catch shimmering views of the city at night when millions of lights reflect on the lake. <br><br>
+
+  Hanumangarhi: Located at an altitude of over 6000 ft near Tallital, Hanumangarhi has a temple dedicated to Lord Hanuman,
+  who is depicted tearing his chest open to reveal Lord Ram and Goddess Sita. This high altitude also offers beautiful views
+  of the sunset. Especially worthwhile is visiting it during the Ramnavami and Hanuman Jayanti Festivals. <br><br>
+
+  Bara Bazaar & Snow View: Bara Bazaar is a vibrant market in Mallital. Its highlight is the ropeway or cable car, which
+  leads to the Snow View. Located at an altitude of over 7000 ft, Snow View, on a clear day offers brilliant views of Nanda
+  Devi, Trishul and Nanda Kot peaks.
+  Open from: 10.00 am - 5.00 pm <br><br>
+
+  Astronomical Observatory: Set up because of the clear skies here, the observatory is said to have one of the most advanced
+  telescopes in India. This telescope is said to calculate the movement of stars, planets and other heavenly bodies extremely
+  precisely. <br><br>
+
+  Dorothy's Seat: Also known as Tiffin Top, it is located 4 kms west of the lake and offers somewhat spectacular views of
+  Nainital. This seat was built by Kellet, an Englishman in memory of his wife, who died in an air crash. <br><br>
+
+  Lands End: Located on the southern corner of the lake, Lands End offers panoramic views of Khurpa Tal. <br><br>
+
+  Nainital Zoo: Located at a high-altitude, the Zoo is home to the rare Snow Leopard, steppe eagle and the Himalayan Black
+  ear. The regal spotted owl is believed to emit a human voice if kept awake for 40 days.
+  Open from: 10 am-4.30 pm, (except Monday) <br><br>
+
+  Eco Cave Gardens: A naturally maintained park, this is a great place for children. The park has a musical fountain operating
+  only in May and June. The six caves here are interesting to visit.
+  Open from: 9.30 am-5.30 pm <br><br>
+
+  Governor's House: The Raj Bhavan has gardens spread over 220 acres lined with deodar trees. The portico is designed in the shape
+  of the British crown. The other memorabilia's worth watching are the magnanimous fireplace, the mailbox next to the writing table
+  and conserÂ­vaÂ­tories called 'glass houses'. You can also try your hand at the 18-hole golf course at a fee of Rs 450.
+  Open from: 11 am-5 pm. <br><br>
+
+  St John Church in the Wilderness: Located in the thick of pine forests, the church is an ancient marvel, complete with stained   glass windows and old wooden pews. Dilapidated, but worth visiting is the old cemetery within its grounds, which is the resting
+  place of the Britishers. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/nainital/family" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+

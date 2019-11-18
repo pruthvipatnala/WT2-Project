@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shilong</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/shilong/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>SHILONG</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/shilong_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>Shillong or Scotland of the East is one of the most romantic cities in the northeast. And when you visit it, you'll just about
+    know why. A relatively unexplored land, splendid visions of rows of pine trees, lush hills and quaint cottages greet you, all
+    reminiscent of the British era gone by. The city derives its name from the 'Leishyllong', the super God who resides on the
+    Shillong peak, as if protecting the city. There might not be much to do here except relax and soak in the legends that resound
+    in every house. The polo ground almost wears a forlorn look minus the horses and forest conversation efforts have narrowed your
+    chances of bagging an exquisite wooden ware. Nevertheless, Shillong abounds in such natural beauty that is definite to awe you.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/shilong_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Khasi, Garo, Jaintia, Bengali, Hindi, English <br><br>
+      
+        Best Time to Visit: October - November & February - June <br><br>
+      
+        Clothing: Light woolens and cotton clothes during summers & heavy woolen during winters. Carry your best raingear if traveling during monsoons , especially raincoats , umbrella and heavy boots to walk through the slush. <br><br>
+      
+        Moving around: Best explored on foot since the city is in itself small and hilly. Also available are yellow and black taxis and some private buses and vehicles that can be hired for sightseeing. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: April-June, Cool & pleasant Temperatures - 15°C-25°C <br>
+        Monsoon: June-late August, Heavy showers daily & damp weather Annual rainfall - 2,954 mm <br>
+        Winter: October-March, Freezing cold, often sub-zero temperature Temperature - 4.0°C - 12.2°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/shilong_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Sohpetbneng Peak: An area that's spiritually inclined, it is revered by the Hynniewtrep tribe. Literally meaning the 'navel of heaven', Sohpetbneng is set amidst scenic views of a forest and it is believed that people traveling here are sure to receive spirituality and peace. <br><br>
+
+  Ward's Lake: A beautiful and serene horse-shoe shaped lake located in the heart of the city, Ward's Lake is also known as Polok Lake.
+  The lake is fantastic for boating, talking walks along the cobble-stoned paths and striking flowers and is a popular haunt for tourists, honeymooners and picnickers. Don't miss out on the Botanical Garden located below the Ward's Lake, which is home to a range of exotic plants and flowers.
+  Open from: Botanical Garden - 9.30 am-6.00 pm <br><br>
+
+  Umiam Lake: Umiam is a majestic lake surrounded by green hills in the Khasi region. It has a Water Sports Complex that provides a range of activity options, including row-boats, paddle-boats, cruise boats, sailing boats, water scooters and speed boats. <br><br>
+
+  Lady Hydari Park: This is the site of some of the most beautiful varieties of roses you'd ever find. It also has a lake hat abounds with pelicans, a mini zoo and a Butterfly Museum with several multi-coloured species within. Open from: Butterfly Museum - 11.00 am-4.00 pm Entry fee - Rs 5 <br><br>
+
+  Golf Course: Said to be the third oldest golf course in India, this is the place for golf lovers. It was started as a 9-hole course and later converted to 18-holes. Also called 'Gleneagle of the East', it is picturesquely set amidst pine trees and rhododendron bushes. <br><br>
+
+  Meghalaya State Museum: Located in Lachumiere the museum has exhibits dating to the tribal era, including a collection of ancient scriptures.
+  Open from: Summer - Monday-Saturday 10.00 am-4.30 pm;
+  Winter - 10.00 am-4.00 pm <br><br>
+
+  Waterfalls: Shillong has several quaint-named waterfalls dotting its landscape. Bishop and Beadon Falls cascade together in the same gorge disappearing into seemingly mists. Elephant Falls is located 12 kms from Shillong and is particularly charming because of the stream descending through falls located amidst fern-covered rocks. Spread Eagle Falls or Urkaliar Falls, so called because of its appearance as an eagle with its wings spread. The fall has steep cliffs reaching to a deep pool. Sweet Falls near Happy Valley and Crinoline Falls near Lady Hydari Park are popular hangouts for family picnics and outings. At a distance of 15 kms Rengthiam Falls is a relatively unexplored area, apt for simply viewing the pristine beauty of nature. <br><br>
+
+  Anglican Cemetery: This is an old churchyard in Rilbong, with gravestones dating centuries. <br><br>
+
+  Kyllang Rock: A mammoth sized circular granite rock located between Mairang and Nongkhlaw with a diameter measuring to 1,000 ft. <br><br>
+
+  Lum Nehru Park: Located next to the Orchid Lake Resort, this park has beautiful well-tended lawns and houses exotic flowers, an orchid-house and an aviary. <br><br>
+
+  Thadlaskein Lake: This Lake is located en route Jowai from Shillong amidst grasslands, rice fields and rows of pine and oak trees. Legends have it that the lake was dug with the bow tips of the followers of Sajar Nangli, one of Jaintia's famous war leaders. <br><br>
+
+  Jakrem: Located over 60 kms from Shillong, this is famous for their hot springs of sulphur water, which are believed to have medicinal properties. <br><br>
+
+  Ranikor: An angler's delight, test your skills at baiting the Golden Mahseers, Golden Carp, Silver Carp and Common Carp. <br><br>
+
+  Mawsynram: Located 55 kms from Shillong, this is also located in the rain belt of the region. Its other attractions include an unexplored cave with a giant stalagmite sloping into a natural Shivalinga. <br><br>
+
+  Dawki: Another excellent picnic spot, Dawki is made of silver streams and deep waters and offers magnificent views of the Khasi Hills. <br><br>
+
+  Syntu Ksiar: Actually a vast pool, the Myntdu River here appears to encircle the Jowai town and appears to come to a sudden halt. This spot is Syntu Ksiar
+  meaning Golden Flower. Catch picturesque views of nature here. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/shilong/family" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+

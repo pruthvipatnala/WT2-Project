@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kulu Manali</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<script type="text/javascript">
+
+var count = 0
+
+function load_experiences(){
+  count++;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var data = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = this.responseText;
+
+      var exps = data['text'].split("**");
+      if(exps[0] != ''){
+      
+
+      var exp_div = document.getElementById('exps')
+      //exp_div.innerHTML = ''
+      
+      for(i=0;i<exps.length;i++){
+        exp_div.innerHTML = exp_div.innerHTML + '<div class="col-sm-2 text-center"> <img src="../static/user_icon.jpg" class="img-circle"  eight="65" width="65" alt="Avatar"> </div> <div class="col-sm-10"> <h4>Anonymous Tourist</h4> <p>'+exps[i]+'</p> <br> </div>'
+      }
+
+    }
+    else{
+      count--;
+    }
+  }
+  };
+  xhttp.open("GET", "http://localhost:8000/experiences/kulumanali/"+count, true);
+  xhttp.send();
+}
+
+window.onscroll = function() {
+  var d = document.documentElement;
+  var offset = d.scrollTop + window.innerHeight;
+  var height = d.offsetHeight;
+
+  console.log('offset = ' + offset);
+  console.log('height = ' + height);
+
+  if (offset === height) {
+    console.log('At the bottom');
+    load_experiences();
+  }
+};
+
+
+function submit_exp(){
+  var new_exp = document.getElementById('new_exp');
+  content = new_exp.value;
+  alert(content);
+  var obj = JSON.stringify({"text":content})
+  if(content != ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert("experience added");
+    }
+  }
+    xhttp.open("POST", "http://localhost:8000/add_experience", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(obj);
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Tripster Company Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="places.html">Places</a></li>
+      </ul><br>
+      
+    </div>
+
+    <div class="col-sm-9">
+      <h1>KULU MANALI</h1>
+      <hr>
+      <h2>Introduction</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>-->
+      <!--<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>-->
+      <img src="../static/kulumanali_1.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>One of the most popular hill stations in India, Manali is a amidst the mountain slopes, with spell-binding views, charming streams, fairy-tale-like fog surrounding little hidden cottages and a lingering scent of pines and freshness. The heavy influx of tourists has led to the exploitation of Manali as a tourist destination, though the  surrounding areas are still relatively untouched. Nevertheless, this is one place that should definitely be on your bucket list.</p>
+      <br><br>
+      
+      <hr>
+      <h2>Know Your Place</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/kulumanali_3.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Local Languages: Pahari, Hindi & English <br><br>
+      
+        Best Time to Visit: May-October, Adventure enthusiasts can plan a trip in winter when the snow offers great skiing options <br><br>
+      
+        Clothing: Cottons and light woolens during summers & heavy woolens during winters. Scarves and gloves are must if traveling in winter. <br><br>
+      
+        Moving around: Kullu-Manali is best explored on a motorbike, which can be hired at reasonable charges. Try this only if you know your way around. Taxis and local buses are also available. Carry a map of the area in any case. <br><br>
+      
+        Climate - 
+        <br><br>
+        Summer: April - June, Cool & pleasant Temperatures - 12°C-25°C <br>
+        Monsoon: July - September, Heavy rainfall, occasional landslides Annual rainfall - 1780 mm <br>
+        Winter: October - February, Extremely cold and foggy and snowfall is common Temperatures - 0°C - 10°C <br>
+      </p>
+
+      <hr>
+
+      <h2>Places to Visit</h2>
+      <!--<h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <img src="../static/kulumanali_2.jpg" style="width:900px;height:550px;">
+      <br><br>
+      <p>
+        Temples of Kullu Valley : Basheshwar Mahadev Temple is believed to be the largest and most spectacularly built. Built
+  in typical Pahari style, Bijli Mahadev Temple is one of the toughest to reach. It is dedicated to Lord Shiva and derives
+  its name from the fact that the shivling inside has, time and again, been shattered by lightening. The priests put together
+  the shivling with ghee. Similar in style to the Bijli Mahadev temple, the Bhuvneshwari Temple is also built in Pahari style.
+  The temple walls are adorned with Kangra-style paintings of Durga and the stone lion placed in the courtyard is built
+  beautifully. Vaishno Devi Temple is a relatively new temple and is located on the National Highway near Kullu. Dedicated
+  to the patron deity of Kullu, Raghunath Temple is the site of the famous Kullu Dusshera celebrations. Legends have it that
+  Lord Rama performed the Ashwamedha Yajna before this very idol. <br><br>
+
+  Temples of Naggar : The Murlidhar Temple, dedicated to Lord Krishna, Radha, Garuda and Laxminarayana has a striking spire on
+  top. It is also the site of the annual Dusshera Festival. The Tripura Sundri Temple is one of the most well-known temples made
+  in wood and sporting three-storeys. It looks similar to the Hadimba Devi Temple with a kalasa crowning the topmost storey. The
+  temple has stone idols of Ganesha, Vishnu, Brahma, Laxmi Narayan, Shiva and Parvati. Jagati Patt Temple is a wooden temple,
+  whose highlight is a slab believed to have been brought here by the gods from the Bhrigu Tung Peak. Similar to Manali, there is
+  a Gauri-Shankar Temple, dedicated to Parvati and Shiva. The main sanctum has engraved figures of Lord Ganesha, floral patterns
+  and musical instruments. <br><br>
+
+
+  Naggar Castle : Today converted into a heritage hotel, the Naggar Castle was built almost 600 years ago as home to the Raja of Kullu.
+  It offers spectacular views of the Naggar Valley and houses the wooden Jagati Patt Temple in its complex. It is also home to the
+  Roerich Art Gallery that houses paintings of Russian artist Nicholas Roerich. The gallery has also preserved original creations of
+  the Himalayas done by Roerich, his quotations and notes left by his visitors. <br><br>
+
+
+  Gadhan Thekchoking Gompa : Located near the Mall, this gompa is particularly noted for its bright frescoes and a medium-sized Buddhist
+  statue. <br><br>
+
+
+  Wildlife Sanctuaries : The Kullu Valley is home to five wildlife sanctuaries, namely Great Himalayan National Park, Khokhan Sanctuary,
+  Kais Sanctuary, Manali Sanctuary and Kanawar Sanctuary. Here you’d find some of the most endangered species including Musk Deer,
+  Brown Bear, Snow Leopard and Cheer Pheasant. It is estimated that the largest number of the Himalayan Tahr are found in the Kanawar
+  Sanctuary. Visit these sanctuaries in the summer months or early winters when traveling to these heights are relatively easy. <br><br>
+      </p>
+
+      <hr>
+
+
+      <h4 >Post your Experience:</h4>
+      <form role="form" action="http://localhost:8000/add_experience/kulumanali/family" method="post" target="_blank">
+        <div class="form-group">
+          <textarea id="new_exp" name="new_exp" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </form>
+      <br><br>
+      
+      <p onclick="load_experiences()">See Past Experiences</p><br>
+      
+      <div class="row" id="exps">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>@Web Tech Project - 2019</p>
+</footer>
+
+</body>
+</html>
+
+
