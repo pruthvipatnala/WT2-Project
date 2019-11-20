@@ -12,6 +12,13 @@ conn.execute("CREATE TABLE experiences ( \
 	PRIMARY KEY(exp_id)\
 );")
 
+conn.execute("CREATE TABLE sentiments (\
+	exp_id	TEXT NOT NULL, \
+	sentiment TEXT,\
+	PRIMARY KEY(exp_id)\
+	);")
+
+
 places = ['alwar', 'kulumanali', 'nainital', 'shilong', 'almora', 'coorg', 'darjeeling', 'dharamsala', 'allepey', 'chandigarh', 'chikmagalur', 'kochi']
 categories = ['family', 'hills', 'leisure']
 
@@ -32,10 +39,15 @@ def get_exp():
 
 	return ''.join(exp)
 
+sentiments = ['Negative', 'Positive']
 
-for i in range(120):
-	insert_command = "INSERT INTO experiences (exp_id, place, category, experience) values ('"+str(i)+"','"+places[i%12]+"','"+categories[(i%12)//4]+"','"+get_exp()+"')"
-	conn.execute(insert_command)
-	conn.commit()
+# for i in range(120):
+# 	insert_command = "INSERT INTO experiences (exp_id, place, category, experience) values ('"+str(i)+"','"+places[i%12]+"','"+categories[(i%12)//4]+"','"+get_exp()+"')"
+# 	conn.execute(insert_command)
+# 	conn.commit()
+
+# 	sentiment_command = "INSERT INTO sentiments (exp_id,sentiment) values ('"+str(i)+"','"+sentiments[random.randint(0,1)]+"')"
+# 	conn.execute(sentiment_command)
+# 	conn.commit()
 
 
